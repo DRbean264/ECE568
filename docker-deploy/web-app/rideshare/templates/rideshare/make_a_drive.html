@@ -1,0 +1,45 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<h1>Thank you for being a driver!!!</h1>
+<h2>You can search and confirm a ride here.</h2>
+<h2>Go and help people in need!!!</h2>
+<form method="POST" class="form-group">
+  {% csrf_token %}
+  <p>
+    Please indicate your convenient time window for driving (optional):<br/>
+    From <input name="arrival_start" type="datetime-local" placeholder="yyyy-mm-dd hh:mm" required/>
+    to <input name="arrival_end" type="datetime-local" placeholder="yyyy-mm-dd hh:mm" required/>    
+  </p>
+
+  <button type="submit" class="button">Search</button>
+  <br/><br/>
+
+  <p>{{message}}</p>
+  <table id="customers">
+    <tr>
+      <th>Id</th>
+      <th>Destination</th>
+      <th>Arrival Time</th>
+      <th>#Passengers</th>
+      <th>Required Vehicle</th>      
+      <th></th>
+      <th></th>
+    </tr>
+    {% for ride in rides %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{ride.destaddr}}</td>
+      <td>{{ride.arrivalTime}}</td>
+      <td>{{ride.totalPassengerNum}}</td>
+      <td>{{vtinfo|get_2D_list_value:ride.vehicleType}}</td>
+      <td><a href="{{ride.pk}}/view">View</a></td>
+      <td><a href="{{ride.pk}}/confirm">Confirm</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+</form>
+{% endblock %}

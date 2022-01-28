@@ -1,0 +1,78 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<a href="javascript:history.go(-1);" class="button">Go Back</a>
+
+{% if ride.vehicle %}
+
+<h3></br>Driver &amp; Vehicle Info</h3>
+
+<div class="grid-container1">
+  <div class="item1"><b>Driver</b>: {{driver.first_name|capfirst}} {{driver.last_name|capfirst}}</div>
+  <div class="item2">
+    <b>Phone number:</b>: +{{driver.userprofile.phoneNumber.country_code}}
+    {{driver.userprofile.phoneNumber.national_number}}
+  </div>
+  <div class="item3">
+    <b>Gender</b>: {{driver.userprofile.getGender}}
+  </div>  
+  <div class="item4"><b>Email</b>: {{driver.email}}</div>
+  <div class="item5"><b>Vehicle</b>: {{driver.vehicle.getVehicleType}}</div>
+  <div class="item6"><b>Capacity</b>: {{driver.vehicle.capacity}}</div>
+  <div class="item7"><b>Plate number</b>: {{driver.vehicle.plateNum}}</div>
+</div>
+{% endif %}
+
+<h3></br>Ride Info</h3>
+
+<div class="grid-container2">
+  <div class="item8">
+    <b>Destination Address</b>: {{ride.destaddr}}
+  </div>
+  <div class="item9"><b>Arrival Time</b>: {{ride.arrivalTime}}</div>
+  <div class="item10"><b>#Passengers</b>: {{ride.totalPassengerNum}}</div>
+  <div class="item11"><b>Shareable</b>: {{ride.shareable}}</div>
+</div>
+
+
+<h3></br>Ride Owner Info</h3>
+
+<div class="grid-container3">
+  <div class="item1"><b>Ride Owner</b>: {{ride_owner.first_name|capfirst}} {{ride_owner.last_name|capfirst}}</div>
+  <div class="item2">
+    <b>Phone number:</b>: +{{ride_owner.userprofile.phoneNumber.country_code}}
+    {{ride_owner.userprofile.phoneNumber.national_number}}
+  </div>
+  <div class="item3">
+    <b>Gender</b>: {{ride_owner.userprofile.getGender}}
+  </div>
+  <div class="item4"><b>Email</b>: {{ride_owner.email}}</div>
+</div>
+
+{% if ride_sharers %}
+<h3></br>Ride Sharer Info</h3>
+{% for ride in ride_sharers %}
+<div class="grid-container3">
+  <div class="item1"><b>Ride Sharer {{forloop.counter}}</b>: {{ride.user.first_name|capfirst}} {{ride.user.last_name|capfirst}}</div>
+  <div class="item2">
+    <b>Phone number:</b>: +{{ride.user.userprofile.phoneNumber.country_code}}
+    {{ride.user.userprofile.phoneNumber.national_number}}
+  </div>
+  <div class="item3">
+    <b>Gender</b>: {{ride.user.userprofile.getGender}}
+  </div>
+  <div class="item4"><b>Email</b>: {{ride.user.email}}</div>
+</div>
+{% endfor %}
+{% endif %}
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}

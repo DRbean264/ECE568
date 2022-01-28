@@ -1,0 +1,56 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% load crispy_forms_tags %}
+<a href="/all_rides" class="button">Go Back</a>
+<br/><br/>
+<h1>My Open Rides</h1>
+
+<table id="customers">
+  <tr>
+    <th>Id</th>
+    <th>Destination</th>
+    <th>Arrival Time</th>
+    <th>Desired Vehicle</th>
+    <th># Passengers</th>
+    <th>Ride Owner</th>
+    <th>Ride Sharer</th>
+    <th>Authorized Action</th>
+  </tr>
+  {% for ride in open_rides %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{ride.destaddr}}</td>
+    <td>{{ride.arrivalTime}}</td>
+    <td>{{ride.getVehicleType}}</td>
+    <td>{{ride.totalPassengerNum}}</td>
+    <td>{{ride.user.first_name|capfirst}} {{ride.user.last_name|capfirst}}</td>
+    <td>
+      {% if ride.sharerride_set.all %}
+      {% for sharer in ride.sharerride_set.all %}
+      {{sharer.user.first_name|capfirst}} {{sharer.user.last_name|capfirst}}  
+      {% endfor %}
+      {% else %}
+      No Sharer
+      {% endif %}
+    </td>
+    {% if user == ride.user %}
+    <td><a href="/open_ride/{{ride.pk}}/edit">Edit</a></td>
+    {% else %}
+    <td><a href="/open_ride/{{ride.pk}}/quit">Quit</a></td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}

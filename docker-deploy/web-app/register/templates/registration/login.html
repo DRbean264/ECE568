@@ -1,0 +1,22 @@
+{% extends 'rideshare/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2>You've already logged in</h2>
+<p>Back to <a href="/">Homepage</a></p>
+{% else %}
+<h1>Ride Share Service Login</h1>
+
+<div class="form-group">
+  <form method='POST'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <p>Don't have an account? Register <a href="/register">here</a></p>
+    <button type='submit' class='btn btn-success'>Login</button>
+  </form>
+</div>
+{% endif %}
+
+{% endblock %}

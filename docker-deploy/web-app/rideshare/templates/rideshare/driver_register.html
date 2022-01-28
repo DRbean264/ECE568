@@ -1,0 +1,22 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.vehicle %}
+
+<p>
+  Sorry!
+  You have already registered a vehicle!</br>
+  Go<a href="/register">back</a>  
+</p>
+
+{% else %}
+{% load crispy_forms_tags %}
+
+<h1>Register to be a driver</h1>
+<form method="POST" class="form-group"> {% csrf_token %}
+  {{form|crispy}}
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+{% endif %}
+{% endblock %}

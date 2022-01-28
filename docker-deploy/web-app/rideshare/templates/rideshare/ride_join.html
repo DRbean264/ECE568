@@ -1,0 +1,54 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<h1>You can search and join a ride here</h1>
+<form method="POST" class="form-group">
+  {% csrf_token %}
+  Please indicate your destination address:
+  <br/>
+  <input name="addr" type="text" placeholder="Destination Address" size="60"/>
+  <br/><br/>
+  <p>
+    Please indicate your acceptable time window:<br/>
+    From <input name="arrival_start" type="datetime-local" placeholder="yyyy-mm-dd hh:mm" required/>
+    to <input name="arrival_end" type="datetime-local" placeholder="yyyy-mm-dd hh:mm" required/>    
+  </p>
+
+  <p>
+    Please indicate the number of available seats you'd like to have:
+    <input name="num_seats" type="number" value="#Passengers Available" min="1" max="10" placeholder="Seats" required/>
+  </p>
+  <button type="submit" class="button">Search</button>
+  <br/><br/>
+
+  <p>{{message}}</p>
+  <table id="customers">
+    <tr>
+      <th>Id</th>
+      <th>Destination</th>
+      <th>Arrival Time</th>
+      <th>#Passengers</th>
+      <th>Max Capacity</th>
+      <th>Required Vehicle</th>      
+      <th></th>
+      <th></th>
+    </tr>
+    {% for ride in rides %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{ride.destaddr}}</td>
+      <td>{{ride.arrivalTime}}</td>
+      <td>{{ride.totalPassengerNum}}</td>
+      <td>{{capacity_list|get_capacity:ride.vehicleType}}</td>
+      <td>{{vtinfo|get_2D_list_value:ride.vehicleType}}</td>
+      <td><a href="{{ride.pk}}/view">View</a></td>
+      <td><a href="{{ride.pk}}/join">Join</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+</form>
+{% endblock %}

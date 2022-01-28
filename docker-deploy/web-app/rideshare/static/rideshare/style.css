@@ -1,0 +1,401 @@
+@impAort url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap')
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppings", san-serif;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 78px;
+    background: mediumseagreen;
+    padding: 6px 8px;
+    transition: all 0.5s ease;
+}
+.sidebar.active {
+    width: 240px;
+}
+.sidebar .logo_content .logo {
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    transition: all 0.5s ease;
+}
+.sidebar.active .logo_content .logo {
+    opacity: 1;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.logo_content .logo i {
+    font-size: 27px;
+    margin-right: 6px;
+    transition: all 0.5s ease;
+}
+.logo_content .logo .logo_name {
+    font-size: 28px;
+    font-weight: 600;
+    transition: all 0.5s ease;
+}
+.sidebar #btn {
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 8px;
+    font-size: 26px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+.sidebar.active #btn{
+    left: 90%;
+}
+.sidebar #btn:hover {
+    color: black;
+}
+.sidebar ul {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.sidebar ul li {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 5px 5px;
+    margin-left: -25px;
+    list-style: none;
+    line-height: 50px;    
+}
+.sidebar ul li .tooltip {
+    position: absolute;
+    left: 100px;
+    top: 0;
+    transform: translate(-40%, -50%);
+    height: 50px;
+    width: 150px;
+    Background: #fff;
+    line-height: 50px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+.sidebar.active ul li .tooltip {
+    display: none;    
+}
+.sidebar ul li:hover .tooltip {
+    transition: all 0.5s ease;
+    opacity: 1;
+    top: 50%;
+    z-index: 100;
+}
+.sidebar ul li a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    border-radius: 12px;
+    font-size: 17px;
+    white-space: nowrap;
+}
+.sidebar ul li a i {
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    font-size: 30px;    
+}
+.sidebar ul li a:hover {
+    min-width: 50px;    
+    padding-left: 10px;
+    color: Black;
+    background: white;
+}
+.sidebar.active ul li a:hover {
+    padding-left: 10px;
+    color: Black;
+    background: white;
+}
+.sidebar .link_name {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.sidebar.active .link_name {
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar .profile_content {
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.sidebar .profile_content .profile {
+    position: relative;
+    padding: 0px 6px;
+    height: 60px;
+    margin-left: 10px;
+}
+.sidebar.active .profile_content .profile {
+    background: none;
+}
+.profile_content .profile .profile_details {
+    height: 45px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.sidebar.active .profile .profile_details {
+    opacity: 1;
+    pointer-events: auto;
+}
+.profile .profile_details .username {
+    margin-left: 10px;
+    font-size: 17px;
+    font-weight: 420;
+    padding-right: 20px;
+}
+.sidebar #log_out {
+    position: absolute;
+    left: 40%;
+    bottom: 26px;
+    transform: translate(-30%);
+    font-size: 25px;
+    min-width: 35px;
+    line-height: 40px;
+    color: #fff;
+    display: flex;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    align-items: center;    
+}
+.sidebar.active #log_out {
+    left: 83%;
+}
+.sidebar #log_out:hover {
+    padding-left: 10px;
+    color: Black;
+    background: white;
+}
+.home_content {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
+    z-index: auto;
+}
+.home_content .text {
+    margin: 24px;    
+}
+.sidebar.active ~ .home_content {
+    width: calc(100% - 250px);
+    left: 250px;
+}
+
+
+/* driver and vehicle detail grid */
+.grid-container1 {
+    display: grid;
+    grid-template-areas:
+        'name name name phone phone phone'
+        'gender gender email email email email'
+        'vehicle vehicle capacity capacity platenum platenum';
+    grid-gap: 1px;
+    background-color: Green;
+    padding: 3px;
+}
+.grid-container1 > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 5px 0;
+    font-size: 20px;
+}
+/* user detail information */
+.grid-container2 {
+    display: grid;
+    grid-template-areas:
+        'addr addr addr addr addr addr'
+        'time time num num shareable shareable';
+    grid-gap: 1px;
+    background-color: Green;
+    padding: 3px;
+}
+.grid-container2 > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 5px 0;
+    font-size: 20px;
+}
+
+/* ride detail information */
+.grid-container3 {
+    display: grid;
+    grid-template-areas:
+        'name name name phone phone phone'
+        'gender gender email email email email';
+    grid-gap: 1px;
+    background-color: Green;
+    padding: 3px;
+}
+.grid-container3 > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 5px 0;
+    font-size: 20px;
+}
+
+.item1 { grid-area: name; }
+.item2 { grid-area: phone; }
+.item3 { grid-area: gender; }
+.item4 { grid-area: email; }
+.item5 { grid-area: vehicle; }
+.item6 { grid-area: capacity; }
+.item7 { grid-area: platenum; }
+.item8 { grid-area: addr; }
+.item9 { grid-area: time; }
+.item10 { grid-area: num; }
+.item11 { grid-area: shareable; }
+.item12 { grid-area: desired_vehicle; }
+
+
+
+/* button */
+.button {
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button:hover {
+    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+}
+
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.dropbtn {
+    background-color: MediumSeaGreen;
+    color: white;
+    padding: 6px 8px 6px 16px;
+    display: block;;
+    font-size: 19px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 下拉内容 (默认隐藏) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* 下拉菜单的链接 */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* 鼠标移上去后修改下拉菜单链接颜色 */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* 在鼠标移上去后显示下拉菜单 */
+.dropdown:hover .dropdown-content {
+    display: block;          
+}
+
+/* 当下拉内容显示后修改下拉按钮的背景颜色 */
+.dropdown:hover .dropbtn {
+    color: darkblue;
+}
+
+/* popup modal */
+.bg-modal {
+    width: calc(100% - 260px);
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    position: absolute;
+    left: 260px;
+}
+.modal-content {
+    width: 250px;
+    height: 200px;
+    background-color: white;          
+    left: 34%;
+    right: 34%;
+    top: 45%;
+    position: absolute;          
+}

@@ -1,0 +1,48 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% load crispy_forms_tags %}
+
+<h1>My Rides</h1>
+
+<p>{{introduction}}</p>
+
+<div class="dropdown">
+  <button class="dropbtn">Open Rides</button>
+  <div class="dropdown-content">
+    <a href="#">ride 1</a>
+    <a href="#">ride 2</a>
+    <a href="#">ride 3</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Confirmed Rides</button>
+  <div class="dropdown-content">
+    <a href="#">ride 1</a>
+    <a href="#">ride 2</a>
+    <a href="#">ride 3</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Completed Rides</button>
+  <div class="dropdown-content">
+    <a href="#">ride 1</a>
+    <a href="#">ride 2</a>
+    <a href="#">ride 3</a>
+  </div>
+</div>
+
+
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<a href="javascript:history.go(-1);" class="button">Go Back</a>
+
+<h1>Join...</h1>
+<h2>Last Step</h2>
+
+<form method="POST" class="form-group">
+  {% csrf_token %}
+  <p>
+    Please indicate the number of passengers you'd like to take:
+    <input name="num_passengers" type="number" value="#Passengers Available" min="1" max="10" required/>
+  </p>
+
+  <button type="submit" class="button">Join</button>
+
+  <h3>Current Ride Information</h3>
+  <table id="customers">
+    <tr>
+      <th>Destination</th>
+      <th>Arrival Time</th>
+      <th>#Passengers</th>
+      <th>Max Capacity</th>
+      <th>Required Vehicle</th>          
+    </tr>
+    <tr>
+      <td>{{ride.destaddr}}</td>
+      <td>{{ride.arrivalTime}}</td>
+      <td>{{ride.numPassengers}}</td>
+      <td>{{capacity_list|get_capacity:ride.vehicleType}}</td>
+      <td>{{vtinfo|get_2D_list_value:ride.vehicleType}}</td>    
+    </tr>  
+  </table>
+</form>
+
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}

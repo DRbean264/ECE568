@@ -1,0 +1,19 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<a href="/open_ride" class="button">Go Back</a>
+<br/><br/>
+<h3>Quit successfully!!!</h3>
+<h3>You are no longer the ride sharer of this ride</h3>
+
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}

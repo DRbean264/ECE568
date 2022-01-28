@@ -1,0 +1,18 @@
+{% extends 'rideshare/base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h2>Welcome back {{user.username}}</h2>
+<h3>{{introduction|safe}}</h3>
+
+{% else %}
+
+<p>Already have an account? Login <a href="/login">here</a></p>
+<p>Don't have an account? Register <a href="/register">here</a></p>
+
+{% endif %}
+
+{% endblock %}

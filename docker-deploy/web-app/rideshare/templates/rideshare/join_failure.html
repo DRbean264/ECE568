@@ -1,0 +1,18 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h2>{{message}}</h2>
+<h3>Go back and try smaller number of passengers.</h3>
+<a href="javascript:history.go(-1);" class="button">Go Back</a>
+
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}

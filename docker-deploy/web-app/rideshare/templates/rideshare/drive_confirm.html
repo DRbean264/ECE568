@@ -1,0 +1,20 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>{{message}}</h1>
+<br/><br/>
+<h3>
+  Confirmation email has been sent to the ride owner and sharer(s) of this ride.
+</h3>
+
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}

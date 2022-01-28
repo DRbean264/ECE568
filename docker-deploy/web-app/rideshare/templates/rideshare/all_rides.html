@@ -1,0 +1,25 @@
+{% extends 'rideshare/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<center>
+<h1>All My Rides</h1>
+
+<h3>As a passenger:</h3>
+<a href="/open_ride" class="button">Open Rides</a><br/><br/>
+<a href="/confirmed_ride" class="button">Confirmed Rides</a><br/><br/>
+<a href="/completed_ride" class="button">Completed Rides</a><br/><br/>
+<br/><br/>
+<h3>As a driver</h3>
+<a href="/confirmed_ride_driver" class="button">Confirmed Rides</a><br/><br/>
+<a href="/completed_ride_driver" class="button">Completed Rides</a><br/><br/>
+</center>
+{% else %}
+<p>
+  Sorry!
+  You should <a href="/register">create an account</a> first
+  or <a href="/login">login</a>.
+</p>
+
+{% endif %}
+{% endblock %}
